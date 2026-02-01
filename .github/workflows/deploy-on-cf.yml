@@ -47,6 +47,9 @@ jobs:
       - name: Build
         run: hugo --minify --logLevel=debug
 
+      - name: Install Wrangler
+        run: npm install -g wrangler@4.61.1
+
       - name: Deploy
         id: deploy
         uses: cloudflare/wrangler-action@v3
