@@ -64,7 +64,7 @@ jobs:
           # events and will also contain the current branch's name, but during a `pull_request`
           # its format is `<pr_number>/merge` which is not what we want.
           # See: https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#github-context
-          command:  npx wrangler pages deploy public --project-name=ehlopl --commit-dirty --branch main
+          command:   pages deploy public --project-name=ehlopl --commit-dirty --branch main
           # ${{ github.head_ref || github.ref_name }}
 
       - name: Print preview URL
