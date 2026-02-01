@@ -1,6 +1,7 @@
 on:
   # This will deploy the production site when changes are pushed to the "main" branch.
   # The branch name should be the one you set up as the "Production branch" in your Cloudflare Pages project.
+  # build on https://www.caktusgroup.com/blog/2025/08/20/how-to-deploy-a-hugo-site-to-cloudflare-pages-with-github-actions/
   push:
     branches: [main]
   # This will deploy preview sites when a PR is opened/reopened and when changes are pushed to the PR.
