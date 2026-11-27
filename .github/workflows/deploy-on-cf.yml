@@ -1,7 +1,6 @@
 on:
   # This will deploy the production site when changes are pushed to the "main" branch.
   # The branch name should be the one you set up as the "Production branch" in your Cloudflare Pages project.
-  # build on https://www.caktusgroup.com/blog/2025/08/20/how-to-deploy-a-hugo-site-to-cloudflare-pages-with-github-actions/
   push:
     branches: [main]
   # This will deploy preview sites when a PR is opened/reopened and when changes are pushed to the PR.
@@ -19,37 +18,6 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          # Fetch all history for Hugo's .GitInfo and .Lastmod
-          fetch-depth: 0
-
-      - name: Cache Hugo resources
-        uses: actions/cache@v3
-        with:
-          path: resources/_gen
-          key: ${{ runner.os }}-hugo-resources-${{ github.ref_name }}-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-hugo-resources-${{ github.ref_name }}-
-            ${{ runner.os }}-hugo-resources-main-
-
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ github.ref_name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-${{ github.ref_name }}-
-            ${{ runner.os }}-node-main-
-
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          # Update the Hugo version if necessary.
-          hugo-version: "0.148.2"
-          extended: true
-
-      - name: Build
-        run: hugo --minify --logLevel=debug
 
       - name: Install Wrangler
         run: npm install -g wrangler@4.61.1
